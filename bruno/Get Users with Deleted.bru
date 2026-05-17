@@ -1,0 +1,14 @@
+meta {
+  name: Get Users with Deleted
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/user
+  body: none
+}
+
+params:query {
+  withDeleted: true
+}

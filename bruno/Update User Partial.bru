@@ -1,0 +1,20 @@
+meta {
+  name: Update User Partial
+  type: http
+  seq: 6
+}
+
+patch {
+  url: {{baseUrl}}/api/user/{{userId}}
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "John Updated"
+  }
+}

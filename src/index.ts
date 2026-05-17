@@ -1,12 +1,17 @@
+import 'reflect-metadata';
+import 'dotenv/config';
 import { CrudoraServer } from "crudora";
-import { PrismaClient } from "@prisma/client";
+import { drizzle } from "drizzle-orm/mysql2";
+import mysql from "mysql2/promise";
 import { User } from "./model/User";
 
-const prisma = new PrismaClient();
+const pool = mysql.createPool({ uri: process.env.DATABASE_URL });
+const db = drizzle(pool);
 
-const server = new CrudoraServer({
+export const server = new CrudoraServer({
   port: 3000,
-  prisma: prisma,
+  db,
+  dialect: 'mysql',
 });
 
 server
